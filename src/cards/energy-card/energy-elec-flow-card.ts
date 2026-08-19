@@ -1,4 +1,4 @@
-import { mdiSolarPower } from "@mdi/js";
+import { mdiLeaf, mdiSolarPower } from "@mdi/js";
 import { UnsubscribeFunc } from "home-assistant-js-websocket";
 import { css, CSSResultArray, html, LitElement, nothing } from "lit";
 import { customElement, property, state } from "lit/decorators.js";
@@ -132,6 +132,8 @@ export class EnergyElecFlowCard
       : 0;
     const batteryChargeOnlyFromGeneration =
       this._config.battery_charge_only_from_generation || false;
+    const unknownSourceIcon = this._config.unknown_source_icon || mdiLeaf;
+    const unknownSourceColor = this._config.unknown_source_color;
     return html`
       <ha-card>
         ${this._config.title
@@ -152,6 +154,8 @@ export class EnergyElecFlowCard
             .maxConsumerBranches=${maxConsumerBranches}
             .hideConsumersBelow=${hideConsumersBelow}
             .batteryChargeOnlyFromGeneration=${batteryChargeOnlyFromGeneration}
+            .unknownSourceIcon=${unknownSourceIcon}
+            .unknownSourceColor=${unknownSourceColor}
           ></ha-elec-sankey>
         </div>
       </ha-card>

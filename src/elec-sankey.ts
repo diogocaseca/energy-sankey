@@ -10,7 +10,7 @@ import {
 
 import {
   mdiTransmissionTower,
-  mdiHelpRhombus,
+  mdiLeaf,
   mdiBatteryCharging,
   mdiBattery,
 } from "@mdi/js";
@@ -80,6 +80,7 @@ export interface ElecRoute {
   text?: string;
   rate: number;
   icon?: string;
+  color?: string;
 }
 
 export interface ElecRoutePair {
@@ -479,6 +480,17 @@ export class ElecSankey extends LitElement {
   @property({ attribute: false })
   public batteryChargeOnlyFromGeneration: boolean = false;
 
+  // Icon (raw MDI SVG path data) shown on the "Unknown source" phantom
+  // node created when the tracked stats don't fully reconcile.
+  @property({ attribute: false })
+  public unknownSourceIcon: string = mdiLeaf;
+
+  // Fill color override for the "Unknown source" phantom node. When unset,
+  // it inherits the theme color of whichever flow type it appears in
+  // (--generation-color or --grid-in-color).
+  @property({ attribute: false })
+  public unknownSourceColor?: string;
+
   private _rateToWidthMultplier: number = 0.2;
 
   private _phantomGridInRoute?: ElecRoute;
@@ -788,7 +800,8 @@ export class ElecSankey extends LitElement {
       phantomGridIn > 0
         ? {
             text: "Unknown source",
-            icon: mdiHelpRhombus,
+            icon: this.unknownSourceIcon,
+            color: this.unknownSourceColor,
             rate: phantomGridIn,
           }
         : undefined;
@@ -796,7 +809,8 @@ export class ElecSankey extends LitElement {
       phantomGeneration > 0.01
         ? {
             text: "Unknown source",
-            icon: mdiHelpRhombus,
+            icon: this.unknownSourceIcon,
+            color: this.unknownSourceColor,
             rate: phantomGeneration,
           }
         : undefined;
@@ -1009,7 +1023,8 @@ export class ElecSankey extends LitElement {
               startTerminatorY + TERMINATOR_BLOCK_LENGTH,
               xB,
               startTerminatorY + TERMINATOR_BLOCK_LENGTH,
-              "generation"
+              "generation",
+              routes[key].color || null
             )
           );
           svgArray.push(
@@ -1196,6 +1211,7 @@ export class ElecSankey extends LitElement {
       y="${y2}"
       height="${in_width}"
       width="${arrow_head_length}"
+      style="${gridRoute.color ? "fill:" + gridRoute.color : ""}"
     />
     <polygon points="${0},${y2}
     ${0},${y2 + in_width}

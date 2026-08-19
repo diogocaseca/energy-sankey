@@ -8,7 +8,7 @@ import {
   CSSResultArray,
   TemplateResult,
 } from "lit";
-import { mdiSolarPower } from "@mdi/js";
+import { mdiLeaf, mdiSolarPower } from "@mdi/js";
 import { customElement, property, state } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 import { ElecRoute, ElecRoutePair } from "../../elec-sankey";
@@ -477,6 +477,8 @@ export class PowerFlowCard extends ElecFlowCardBase implements LovelaceCard {
       : 0;
     const batteryChargeOnlyFromGeneration =
       this._config.battery_charge_only_from_generation || false;
+    const unknownSourceIcon = this._config.unknown_source_icon || mdiLeaf;
+    const unknownSourceColor = this._config.unknown_source_color;
 
     return html`
       <ha-card>
@@ -499,6 +501,8 @@ export class PowerFlowCard extends ElecFlowCardBase implements LovelaceCard {
             .maxConsumerBranches=${maxConsumerBranches}
             .hideConsumersBelow=${hideConsumersBelow}
             .batteryChargeOnlyFromGeneration=${batteryChargeOnlyFromGeneration}
+            .unknownSourceIcon=${unknownSourceIcon}
+            .unknownSourceColor=${unknownSourceColor}
           ></ha-elec-sankey>
         </div>
       </ha-card>

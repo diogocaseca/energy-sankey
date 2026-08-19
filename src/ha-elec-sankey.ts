@@ -62,7 +62,7 @@ export class HaElecSankey extends ElecSankey {
     showLeftValue: boolean = true
   ): TemplateResult {
     const _id = id || "";
-    const numFractionDigits = this.unit === "kWh" ? 1 : 0;
+    const numFractionDigits = 2;
     // prettier-ignore
     return html`<div
       class="label ${id ? "label-action-clickable " : ""}${displayClass}"

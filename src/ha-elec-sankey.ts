@@ -136,6 +136,12 @@ export class HaElecSankey extends ElecSankey {
         ha-svg-icon.small {
           --mdc-icon-size: 12px;
         }
+        .directionright,
+        .directionleft {
+          display: inline-flex;
+          flex-direction: column;
+          align-items: center;
+        }
         .directionright.grid {
           color: var(--energy-grid-consumption-color);
         }

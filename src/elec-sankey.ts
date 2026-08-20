@@ -1050,7 +1050,7 @@ export class ElecSankey extends LitElement {
                 2}px; flex-basis: ${LABEL_WIDTH}px; margin: 0 0 0 ${-LABEL_WIDTH /
               2}px;"
             >
-              ${this._generateLabelDiv(id, icon, undefined, rate)}
+              ${this._generateLabelDiv(id, icon, undefined, rate, undefined, routes[key].color)}
             </div>`
           );
         }
@@ -1196,8 +1196,8 @@ export class ElecSankey extends LitElement {
         undefined,
         rateA,
         rateB,
-        undefined,
-        undefined,
+        gridRoute.color,
+        gridRoute.color,
         "grid",
         hasGridExport
       )}

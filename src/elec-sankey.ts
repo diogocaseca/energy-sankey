@@ -1040,7 +1040,6 @@ export class ElecSankey extends LitElement {
         const midX = xA + width / 2;
         const LABEL_WIDTH = 72;
         const icon = routes[key].icon;
-        const id = routes[key].id || undefined;
         if (icon) {
           divArray.push(
             html`<div
@@ -1050,7 +1049,7 @@ export class ElecSankey extends LitElement {
                 2}px; flex-basis: ${LABEL_WIDTH}px; margin: 0 0 0 ${-LABEL_WIDTH /
               2}px;"
             >
-              ${this._generateLabelDiv(id, icon, undefined, rate, undefined, routes[key].color)}
+              ${this._generateLabelDiv(undefined, icon, undefined, rate, undefined, routes[key].color)}
             </div>`
           );
         }
@@ -1191,7 +1190,7 @@ export class ElecSankey extends LitElement {
       top: ${midY * svgScaleX}px; margin: ${-divHeight / 2}px 0 0 0px;"
     >
       ${this._generateLabelDiv(
-        gridRoute.id,
+        undefined,
         gridRoute.icon || mdiTransmissionTower,
         undefined,
         rateA,
@@ -1790,7 +1789,7 @@ export class ElecSankey extends LitElement {
             }px; margin: ${-divHeight / 2}px 0 0 0;"
         >
             ${this._generateLabelDiv(
-              batt.in.id,
+              undefined,
               batt.out.rate > 0 ? mdiBatteryCharging : mdiBattery,
               "",
               batt.out.rate,

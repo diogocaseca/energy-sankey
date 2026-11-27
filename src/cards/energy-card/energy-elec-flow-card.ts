@@ -34,6 +34,7 @@ import {
   HIDE_CONSUMERS_BELOW_THRESHOLD_KWH,
 } from "./const";
 import { ElecFlowCardBase } from "../../shared/elec-flow-card-base";
+import { renderTariffFlag, tariffFlagStyles } from "../../shared/tariff-flag";
 import { setupCustomlocalize } from "../../localize";
 
 const DEFAULT_CONFIG: EnergyElecFlowCardConfig = {
@@ -139,6 +140,7 @@ export class EnergyElecFlowCard
         ${this._config.title
           ? html`<h1 class="card-header">${this._config.title}</h1>`
           : ""}
+        ${renderTariffFlag(this.hass, this._config.tariff_flag_entity)}
         <div
           class="content ${classMap({
             "has-header": !!this._config.title,
@@ -299,6 +301,7 @@ export class EnergyElecFlowCard
         --batt-in-color: var(--energy-battery-out-color);
       }
     `,
+    tariffFlagStyles,
   ];
 }
 

@@ -35,6 +35,7 @@ import {
   HIDE_CONSUMERS_BELOW_THRESHOLD_W,
 } from "./const";
 import { ElecFlowCardBase } from "../../shared/elec-flow-card-base";
+import { renderTariffFlag, tariffFlagStyles } from "../../shared/tariff-flag";
 import { setupCustomlocalize } from "../../localize";
 
 const DEFAULT_CONFIG: PowerFlowCardConfig = {
@@ -485,6 +486,7 @@ export class PowerFlowCard extends ElecFlowCardBase implements LovelaceCard {
         ${config.title
           ? html`<h1 class="card-header">${config.title}</h1>`
           : ""}
+        ${renderTariffFlag(this.hass, config.tariff_flag_entity)}
         <div
           class="content ${classMap({
             "has-header": !!this._config.title,
@@ -524,6 +526,7 @@ export class PowerFlowCard extends ElecFlowCardBase implements LovelaceCard {
       for (const id of [
         this._config.power_from_grid_entity,
         this._config.power_to_grid_entity,
+        this._config.tariff_flag_entity,
         ...(this._config.generation_entities || []),
         ...(this._config.consumer_entities.map((a) => a.entity) || []),
         ...(this._config.battery_entities.map((a) => a.entity) || []),
@@ -577,6 +580,7 @@ export class PowerFlowCard extends ElecFlowCardBase implements LovelaceCard {
         --batt-in-color: var(--energy-battery-out-color);
       }
     `,
+    tariffFlagStyles,
   ];
 }
 

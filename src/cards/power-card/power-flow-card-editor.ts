@@ -55,6 +55,7 @@ export class PowerFlowCardEditor
     const showSeparateToGridOption = this._config?.independent_grid_in_out;
     return [
       { name: "title", selector: { text: {} } },
+      { name: "tariff_flag_entity", selector: { entity: {} } },
       {
         name: "power_from_grid_entity",
         selector: {
@@ -239,7 +240,10 @@ export class PowerFlowCardEditor
       //   configValue = "theme";
       //   value = value.theme;
       // }
-      else if (
+      else if (value.tariff_flag_entity !== this._config.tariff_flag_entity) {
+        configValue = "tariff_flag_entity";
+        value = value.tariff_flag_entity;
+      } else if (
         value.power_from_grid_entity !== this._config.power_from_grid_entity
       ) {
         configValue = "power_from_grid_entity";

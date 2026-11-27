@@ -19,6 +19,7 @@ const ENERGY_LABELS = [
 ];
 const schema = [
   { name: "title", selector: { text: {} } },
+  { name: "tariff_flag_entity", selector: { entity: {} } },
 
   {
     name: "appearance",

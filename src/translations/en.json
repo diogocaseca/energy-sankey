@@ -3,7 +3,8 @@
     "generic": {
       "other": "Other",
       "home": "Home",
-      "untracked": "Untracked"
+      "untracked": "Untracked",
+      "tariff_flag": "Tariff flag"
     },
     "power_sankey": {
       "live_power_flow": "Live power flow"
@@ -18,7 +19,8 @@
         "title": "Title",
         "max_consumer_branches": "Limit quantity of consumer branches (0 for unlimited)",
         "appearance": "Appearance",
-        "advanced_options": "Advanced Options"
+        "advanced_options": "Advanced Options",
+        "tariff_flag_entity": "Tariff flag entity (optional)"
       },
       "power_sankey": {
         "power_from_grid_entity": "Power from grid (optional)",

@@ -3,7 +3,8 @@
     "generic": {
       "other": "Outro",
       "home": "Início",
-      "untracked": "Não rastreado"
+      "untracked": "Não rastreado",
+      "tariff_flag": "Bandeira tarifária"
     },
     "power_sankey": {
       "live_power_flow": "Fluxo de energia em tempo real"
@@ -18,7 +19,8 @@
         "title": "Título",
         "max_consumer_branches": "Limite da quantidade de ramificações de consumidores (0 para ilimitado)",
         "appearance": "Aparência",
-        "advanced_options": "Opções avançadas"
+        "advanced_options": "Opções avançadas",
+        "tariff_flag_entity": "Entidade da bandeira tarifária (opcional)"
       },
       "power_sankey": {
         "power_from_grid_entity": "Potência da rede (opcional)",

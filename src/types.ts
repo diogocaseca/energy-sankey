@@ -4,6 +4,9 @@ interface ElecFlowCardConfig extends LovelaceCardConfig {
   title?: string;
   hide_small_consumers?: boolean;
   battery_charge_only_from_generation?: boolean;
+  // Entity providing the active tariff flag (bandeira tarifária), shown as a
+  // coloured badge on the card.
+  tariff_flag_entity?: string;
   // Raw MDI SVG path data (e.g. from `@mdi/js`) for the "Unknown source"
   // phantom node shown when tracked stats don't fully reconcile.
   unknown_source_icon?: string;

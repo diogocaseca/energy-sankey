@@ -2,6 +2,7 @@ import { css, html, nothing, TemplateResult } from "lit";
 import { mdiFlag } from "@mdi/js";
 import { HomeAssistant } from "../ha/types";
 import { setupCustomlocalize } from "../localize";
+import { fireEvent } from "../ha/common/dom/fire_event";
 
 type TariffFlagKind = "green" | "yellow" | "red1" | "red2" | "unknown";
 
@@ -40,8 +41,14 @@ export function renderTariffFlag(
   const stateObj = hass.states[entityId];
   const kind = stateObj ? classifyTariffFlag(stateObj.state) : "unknown";
   const text = stateObj ? hass.formatEntityState(stateObj) : entityId;
+  const openMoreInfo = (ev: Event) =>
+    fireEvent(ev.currentTarget as HTMLElement, "hass-more-info", { entityId });
   return html`<div class="tariff-flag-row">
-    <span class="tariff-flag ${kind}" title=${label}>
+    <span
+      class="tariff-flag ${kind} ${stateObj ? "clickable" : ""}"
+      title=${label}
+      @click=${stateObj ? openMoreInfo : nothing}
+    >
       <ha-svg-icon .path=${mdiFlag}></ha-svg-icon>${text}
     </span>
   </div>`;
@@ -60,6 +67,9 @@ export const tariffFlagStyles = css`
     font-weight: 500;
     color: var(--primary-text-color);
     --tariff-flag-color: var(--secondary-text-color);
+  }
+  .tariff-flag.clickable {
+    cursor: pointer;
   }
   .tariff-flag ha-svg-icon {
     --mdc-icon-size: 24px;
